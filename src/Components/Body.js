@@ -23,12 +23,12 @@ const Body = () => {
    //dep array[searchText] => once after Initial render + everytime after re-render(my searchText Changes)
    useEffect(() => {
       //API Call
-      getResaturants();
+      getRestaurants();
    }, [])
 
-   async function getResaturants(){
+   async function getRestaurants(){
       const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.5002987&lng=78.396665&page_type=DESKTOP_WEB_LISTING");
-      const json = await data.json();
+      const json = await data?.json();
     
       setAllRestaurants(json?.data?.cards[2]?.data?.data?.cards);
       setFilteredRestaurants(json?.data?.cards[2]?.data?.data?.cards);
