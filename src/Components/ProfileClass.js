@@ -18,12 +18,9 @@ class Profile extends React.Component{
 
    async componentDidMount(){
 
-      const data =await fetch("https://api.github.com/users/rahulL2203");
-      const json= await data.json();
-      console.log(json);
-      this.setState({
-         userInfo: json,
-      });
+     this.timer = setInterval(()=>{
+      console.log("Namaste React");
+       } , 1000);
       //API Call here 
       console.log("child-ComponentDidMount"+ " "+this.props.name);
    }
@@ -34,7 +31,8 @@ class Profile extends React.Component{
    }
 
    componentWillUnmount(){
-      console.log("Component Will Unmount");
+      clearInterval(this.timer);
+      console.log("Component Will Unmount"); 
    }
    render(){
       const { count } = this.state; //Destructuring

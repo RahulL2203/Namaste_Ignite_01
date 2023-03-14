@@ -24,10 +24,11 @@ class About extends Component{
             <h1>About US Page </h1>
             <p>This is About Us component , Let's add more stuf Later..........</p>
             {/*<Outlet/>
-              <ProfileFunctionalComponent name={"Functional_Name"}/>
+               <Profile name={"Class_Name"}/>
             */}
             
-             <Profile name={"Class_Name"}/>
+            
+             <ProfileFunctionalComponent name={"Functional_Name"}/>
    
          </div>
       );
