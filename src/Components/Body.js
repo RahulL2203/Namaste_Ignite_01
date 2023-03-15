@@ -4,14 +4,12 @@ import RestaurantCard from "./RestaurantCard";
 import { useState , useEffect } from "react";
 import Shimmer from "./Shimmer";
 import {Link} from "react-router-dom";
+import {filteredData} from "../Utils/Helper";
+import useOnline from "../Utils/useOnline";
 
 
-function  filteredData(searchText, restaurants){
-  const filteredData = restaurants.filter((whatever)=> 
-      whatever?.data?.name?.toLowerCase()?.includes(searchText.toLowerCase())
-   );
-   return filteredData;
-}
+
+
 
 const Body = () => {
 
@@ -35,7 +33,10 @@ const Body = () => {
       
    }
 
-   console.log("render");
+   const isOnline = useOnline();
+   if(!isOnline){
+      return<h1>Offline , please check ur Internet Connection</h1>
+   }
   if(!allRestaurants) return null;
 
  // if(filteredRestaurants?.length===0)
