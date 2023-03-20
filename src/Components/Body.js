@@ -1,11 +1,12 @@
 //No key (not accaeptable) <<<index Key (Last Option)<<< Unique Key (best practice)
-import { restaurantList } from "../Constants";
+import {     } from "../Constants";
 import RestaurantCard from "./RestaurantCard";
-import { useState , useEffect } from "react";
+import { useState , useEffect ,useContext } from "react";
 import Shimmer from "./Shimmer";
 import {Link} from "react-router-dom";
 import {filteredData} from "../Utils/Helper";
 import useOnline from "../Utils/useOnline";
+import UserContext from "../Utils/UserContext";
 
 
 
@@ -17,6 +18,7 @@ const Body = () => {
    const [filteredRestaurants,setFilteredRestaurants] = useState([]);
    const [searchText, setSearchText] = useState(""); //returns = [Variable Name , Function to update the variable]
    
+   const{user,setUser} = useContext(UserContext);
    //Empty Dependency Array => once after initial render
    //dep array[searchText] => once after Initial render + everytime after re-render(my searchText Changes)
    useEffect(() => {
@@ -42,7 +44,7 @@ const Body = () => {
  // if(filteredRestaurants?.length===0)
    // return <h1>No Restaurants matches ur Search ..!!!!</h1>;
 
-   return(allRestaurants?.length===0) ? <Shimmer/> : 
+   return allRestaurants?.length===0 ? (<Shimmer/>) : 
    (
       <>
          <div className="search-container p-5 bg-blue-100 my-5">
@@ -64,13 +66,30 @@ const Body = () => {
                
             }}>Search</button>
 
+            <input value={user.name} onChange={
+               e=>setUser({
+                  ...user,
+                  name:e.target.value,
+                  
+               })
+            }></input>
+
+
+            <input value={user.email} onChange={
+               e=>setUser({
+                  ...user,
+                  email:e.target.value,
+                
+               })
+            }></input>
+
          </div>
          <div className="flex flex-wrap">
           {filteredRestaurants.map((restaurant)=>{
             return (
-            <Link to ={"/restaurant/" + restaurant.data.id}  key={restaurant.data.id}>
+            <Link to = {"/restaurant/" + restaurant.data.id}  key={restaurant.data.id}>
                <RestaurantCard {...restaurant.data} />
-            </Link>)
+            </Link>);
           })}
     
          </div>

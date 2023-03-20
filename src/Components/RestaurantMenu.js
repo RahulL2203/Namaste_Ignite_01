@@ -13,7 +13,7 @@ const RestaurantMenu = () => {
    const restaurant = useRestaurant(resId);
 
   
-   return(!restaurant)?<Shimmer/> : (
+   return(!restaurant)? <Shimmer/> : (
       <div className="menu">
          <div>
          <h2>Restaurant Id: {resId}</h2>
